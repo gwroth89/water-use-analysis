@@ -1,0 +1,16 @@
+certifi
+Click
+Flask
+Flask-SQLAlchemy
+Gunicorn
+itsdangerous
+Jinja2
+MarkupSafe
+numpy
+pandas
+psycopg2
+python-dateutil
+pytz
+SQLAlchemy
+Werkzeug
+wincertstore
