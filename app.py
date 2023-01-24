@@ -9,7 +9,7 @@ from sqlalchemy import create_engine, func
 #Flask Setup
 app = Flask(__name__)
 
-#Flask Routes
+#Flask Homepage
 @app.route("/")
 def welcome():
     """List all available api routes"""
@@ -18,15 +18,14 @@ def welcome():
         f'/data'
     )
 
+#Flask database
 @app.route('/data')
 def data ():
     engine = create_engine("sqlite:///database/drought_water.db")
     base = automap_base()
     base.prepare(autoload_with=engine)
-    print(base.classes.keys())
-    # drought = base.classes.drought
-    # water = base.classes.water
-    return jsonify(data)
+    drought = base.classes.drought
+    water = base.classes.water
 
 if __name__ == '__main__':
     app.run()
