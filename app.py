@@ -18,7 +18,7 @@ def welcome():
         f'Coming Soon'
     )
 
-@app.route('/data', methods='GET')
+@app.route('/data')
 def data ():
     base = automap_base()
     engine = create_engine("sqlite:///database/drought_water.db")
