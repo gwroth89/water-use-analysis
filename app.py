@@ -11,7 +11,7 @@ from sqlalchemy import select
 
 #Flask Setup
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 #Flask Homepage
