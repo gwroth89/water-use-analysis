@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import jsonify
+from flask_cors import CORS, cross_origin
 import sqlalchemy as db
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -8,8 +9,9 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, func
 from sqlalchemy import select
 
-x#Flask Setup
+#Flask Setup
 app = Flask(__name__)
+CORS(app)
 
 #Flask Homepage
 @app.route("/")
@@ -39,7 +41,7 @@ def data ():
         [drought]).where(drought.State=='CA')
     drought_result = engine.execute(query).fetchall()
     response = jsonify({'result': [dict(row) for row in drought_result]})
-    response.headers.add('Access-Control-Allow-Origin', '*')
+    # response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 #Flask Water route
