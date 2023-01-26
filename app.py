@@ -8,18 +8,6 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, func
 from sqlalchemy import select
 
-# engine = create_engine("sqlite:///database/drought_water.db")
-# base = automap_base()
-# base.prepare(autoload_with=engine)
-# drought = base.classes.drought
-# water = base.classes.water
-# print(base.classes.keys())
-
-# Session = sessionmaker(bind=engine)
-
-# stmt = select(drought)
-# print(stmt)
-
 #Flask Setup
 app = Flask(__name__)
 
@@ -47,7 +35,7 @@ def data ():
     query = db.select(
         [drought]).where(drought.State=='CA')
     drought_result = engine.execute(query).fetchall()
-    return str(drought_result)
+    return jsonify({'result': [dict(row) for row in drought_result]})
 
 if __name__ == '__main__':
     app.run(debug=True)
