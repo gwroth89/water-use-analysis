@@ -1,7 +1,6 @@
 certifi
 Click
-Flask
-Flask-SQLAlchemy
+Flask == 1.1.2
 Gunicorn
 itsdangerous
 Jinja2
@@ -11,7 +10,7 @@ pandas
 psycopg2
 python-dateutil
 pytz
-SQLAlchemy
+SQLAlchemy == 1.4.32
 Werkzeug
 wincertstore
 jsonify
