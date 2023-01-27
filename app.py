@@ -62,7 +62,7 @@ def average ():
     
     #Query
     query = db.select(
-        [drought_average]).where(drought.State=='CA')
+        [drought_average])
     result = engine.execute(query).fetchall()
     return jsonify({'result': [dict(row) for row in result]})
 
