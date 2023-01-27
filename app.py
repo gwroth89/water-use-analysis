@@ -21,47 +21,69 @@ def welcome():
     return(
         f'Available Routes:<br/>'
         f'/drought<br/>'
+        f'/drought_avg<br/>'
         f'/water<br/>'
     )
 
 #Flask Drought route
-@app.route('/data')
-def data ():
+@app.route('/drought')
+def drought ():
 
-    #reflecting database
+    #Reflecting database
     engine = create_engine("sqlite:///database/drought_water.db").connect()
     base = automap_base()
     base.prepare(autoload_with=engine)
     
-    #defining tables within the DB
+    #Defining tables within the DB
+    drought = base.classes.drought
+    water = base.classes.water
+    drought_average = base.classes.drought_average
+    
+    #Query
+    query = db.select(
+        [drought]).where(drought.State=='CA')
+    result = engine.execute(query).fetchall()
+    response = jsonify({'result': [dict(row) for row in result]})
+    return response
+
+#Flask Average % Drought route
+@app.route('/average')
+def average ():
+
+    #Reflecting database
+    engine = create_engine("sqlite:///database/drought_water.db").connect()
+    base = automap_base()
+    base.prepare(autoload_with=engine)
+    
+    #Defining tables within the DB
     drought = base.classes.drought
     water = base.classes.water
     
-    #query
+    #Query
+    query = db.select(
+        [drought_average]).where(drought.State=='CA')
+    result = engine.execute(query).fetchall()
+    return jsonify({'result': [dict(row) for row in result]})
+
+
+#Flask Water route
+@app.route('/water')
+def water ():
+
+    #Reflecting database
+    engine = create_engine("sqlite:///database/drought_water.db").connect()
+    base = automap_base()
+    base.prepare(autoload_with=engine)
+    
+    #Defining tables within the DB
+    drought = base.classes.drought
+    water = base.classes.water
+    
+    #Query
     query = db.select(
         [drought]).where(drought.State=='CA')
-    drought_result = engine.execute(query).fetchall()
-    response = jsonify({'result': [dict(row) for row in drought_result]})
-    return response
-
-# #Flask Water route
-# @app.route('/water')
-# def data ():
-
-#     #reflecting database
-#     engine = create_engine("sqlite:///database/drought_water.db").connect()
-#     base = automap_base()
-#     base.prepare(autoload_with=engine)
-    
-#     #defining tables within the DB
-#     drought = base.classes.drought
-#     water = base.classes.water
-    
-#     #query
-#     query = db.select(
-#         [drought]).where(drought.State=='CA')
-#     drought_result = engine.execute(query).fetchall()
-#     return jsonify({'result': [dict(row) for row in drought_result]})
+    result = engine.execute(query).fetchall()
+    return jsonify({'result': [dict(row) for row in result]})
 
 
 if __name__ == '__main__':
