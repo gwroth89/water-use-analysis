@@ -20,9 +20,9 @@ def welcome():
     """List all available api routes"""
     return(
         f'Available Routes:<br/>'
-        f'/drought<br/>'
-        f'/drought_avg<br/>'
-        f'/water<br/>'
+        f'/drought (under construction)<br/>'
+        f'/average<br/>'
+        f'/water (under construction)<br/>'
     )
 
 #Flask Drought route
@@ -37,7 +37,7 @@ def drought ():
     #Defining tables within the DB
     drought = base.classes.drought
     water = base.classes.water
-    drought_average = base.classes.drought_average
+    drought_average = base.classes.average_drought
     
     #Query
     query = db.select(
@@ -58,7 +58,7 @@ def average ():
     #Defining tables within the DB
     drought = base.classes.drought
     water = base.classes.water
-    drought_average = base.classes.drought_average
+    drought_average = base.classes.average_drought
     
     #Query
     query = db.select(
@@ -79,7 +79,7 @@ def water ():
     #Defining tables within the DB
     drought = base.classes.drought
     water = base.classes.water
-    drought_average = base.classes.drought_average
+    drought_average = base.classes.average_drought
     
     #Query
     query = db.select(
