@@ -61,8 +61,8 @@ def average ():
     drought_average = base.classes.average_drought
     
     #Query
-    query = db.select(
-        [drought_average])
+    # query = db.select(
+    #     [drought_average])
     result = engine.execute('select * from average_drought').fetchall()
     return jsonify({'result': [dict(row) for row in result]})
 
