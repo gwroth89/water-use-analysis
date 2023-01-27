@@ -58,6 +58,7 @@ def average ():
     #Defining tables within the DB
     drought = base.classes.drought
     water = base.classes.water
+    drought_average = base.classes.drought_average
     
     #Query
     query = db.select(
@@ -78,6 +79,7 @@ def water ():
     #Defining tables within the DB
     drought = base.classes.drought
     water = base.classes.water
+    drought_average = base.classes.drought_average
     
     #Query
     query = db.select(
