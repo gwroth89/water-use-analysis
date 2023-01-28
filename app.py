@@ -82,9 +82,9 @@ def water ():
     drought_average = base.classes.average_drought
     
     #Query
-    query = db.select(
-        [drought]).where(drought.State=='CA')
-    result = engine.execute(query).fetchall()
+    # query = db.select(
+    #     [drought]).where(drought.State=='CA')
+    result = engine.execute('select * from water').fetchall()
     return jsonify({'result': [dict(row) for row in result]})
 
 
