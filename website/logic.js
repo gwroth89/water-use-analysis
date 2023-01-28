@@ -1,67 +1,76 @@
-// Store our API endpoint as queryUrl.
-let queryUrl = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2021-01-01&endtime=2021-01-02&maxlongitude=-69.52148437&minlongitude=-123.83789062&maxlatitude=48.74894534&minlatitude=25.16517337";
-function createMap(earthquakes) {
+let myMap = L.map("map", {
+  center: [36.7783, -119.4179],
+  zoom: 6
+  });
 
-  // Create the base layers.
-  var street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(myMap);
+
+// Load the GeoJSON data. this is the county data, we'll need this in our data to pull from flask?
+
+let Counties = "https://water-use-analysis.onrender.com/water";
+let geoData = "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json";
+
+let geojson;
+// let geojson1;
+
+
+d3.json(Counties).then(function(county) {
+  d3.json(geoData).then(function(geo) {
+    geo.features = geo.features.filter(feature => feature.properties.STATE == 06);
+    
+  
+    geojson = L.choropleth(geo, {
+      valueProperty: function(feature){
+      val = county.result.filter(counti => counti.Fips == feature.id);
+
+      // console.log (val)
+      return val[0]["Total withdrawals total"]
+
+    },
+    scale: ["#ffffb2", "#b10026"],
+    steps: 10,
+    mode: "q",
+      style: {
+        // Border color
+      color: "#fff",
+      weight: 1,
+      fillOpacity: 0.8,
+    },
+
+    onEachFeature: function(feature, layer) {
+      layer.on({
+        mouseover: function highlightFeature(event) {
+          let layer = event.target;
+          layer.setStyle({
+              weight: 5,
+              color: 'black',
+              dashArray: '',
+              fillOpactity: .9
+          });
+
+          // layer.bringToFront();
+          info.update(layer.feature.properties);
+        },
+        mouseout: function resetHighlight(event) {
+          geojson.resetStyle(event.target);
+          info.update();
+          },
+          
+      });
+      
+      layer.bindPopup("<strong>" + feature.properties.NAME + "</strong><br /><br />Total water withdrawals in Mgal/d" + 
+        val[0]["Total withdrawals total"]);
+    }
+  
+    }).addTo(myMap)
   })
-
-  var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-  });
-
-  // Create a baseMaps object.
-  var baseMaps = {
-    "Street Map": street,
-    "Topographic Map": topo
-  };
-
-  // Create an overlay object to hold our overlay.
-  var overlayMaps = {
-    Earthquakes: earthquakes
-  };
-
-  // Create our map, giving it the streetmap and earthquakes layers to display on load.
-  var myMap = L.map("map", {
-    center: [
-      37.09, -95.71
-    ],
-    zoom: 5,
-    layers: [street, earthquakes]
-  });
-
-  // Create a layer control.
-  // Pass it our baseMaps and overlayMaps.
-  // Add the layer control to the map.
-  L.control.layers(baseMaps, overlayMaps, {
-    collapsed: false
-  }).addTo(myMap);
-
-}
+    
+})
 
 
-// Perform a GET request to the query URL/
-d3.json(queryUrl).then(function (data) {
-  // Once we get a response, send the data.features object to the createFeatures function.
-  createFeatures(data.features);
-});
-
-function createFeatures(earthquakeData) {
-
-  // Define a function that we want to run once for each feature in the features array.
-  // Give each feature a popup that describes the place and time of the earthquake.
-  function onEachFeature(feature, layer) {
-    layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.time)}</p>`);
-  }
-
-  // Create a GeoJSON layer that contains the features array on the earthquakeData object.
-  // Run the onEachFeature function once for each piece of data in the array.
-  var earthquakes = L.geoJSON(earthquakeData, {
-    onEachFeature: onEachFeature
-  });
-
-  // Send our earthquakes layer to the createMap function/
-  createMap(earthquakes);
-}
+//////////////////////////////////////////////////////
+//             Plotly time series                  //
+////////////////////////////////////////////////////
 
