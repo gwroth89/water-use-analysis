@@ -22,7 +22,7 @@ def welcome():
         f'Available Routes:<br/>'
         f'/drought (under construction)<br/>'
         f'/average<br/>'
-        f'/water (under construction)<br/>'
+        f'/water<br/>'
     )
 
 #Flask Drought route
@@ -61,9 +61,9 @@ def average ():
     drought_average = base.classes.average_drought
     
     #Query
-    # query = db.select(
-    #     [drought_average])
-    result = engine.execute('select * from average_drought').fetchall()
+    query = db.select(
+        [drought_average])
+    result = engine.execute(query).fetchall()
     return jsonify({'result': [dict(row) for row in result]})
 
 
@@ -82,9 +82,9 @@ def water ():
     drought_average = base.classes.average_drought
     
     #Query
-    # query = db.select(
-    #     [drought]).where(drought.State=='CA')
-    result = engine.execute('select * from water').fetchall()
+    query = db.select(
+        [water])
+    result = engine.execute(query).fetchall()
     return jsonify({'result': [dict(row) for row in result]})
 
 
