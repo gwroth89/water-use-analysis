@@ -1,5 +1,14 @@
 # Project 3 - Drought vs Water Consumption
 
+Team Name:  
+         Briefly Mentioned 
+Team Members:   
+         Rahma Ali, Kathleen Pflugi, Greg Roth, Art Rogers
+
+
+![alt text](![Capture](https://user-images.githubusercontent.com/113714205/215357843-6bd58f6a-6aab-4640-b02b-bd7c24158bf8.JPG))
+
+
 ---
 
 ## Project Proposal
