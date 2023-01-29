@@ -10,8 +10,7 @@ We plan to load the data into a relational database to perform our final analysi
 
 ## Extract
 
-**Twitter API Calls**
-
+**Twitter API Calls*
 We made two separate calls to the Twitter v2 API. The first was to get Elon's account information that we then used to build our second call. The second call pulled as many of his historical tweets as possible. In order to get as many tweets as possible, we had to loop through each page of the request using the next_token parameter within the API. the response values were saved in lists.
 
 **Quandl API Call**
