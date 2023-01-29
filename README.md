@@ -1,39 +1,57 @@
 # Project 3 - Drought vs Water Consumption
 
+---
+
 ## Project Proposal
 
-Do Elon tweets have an impact on his associated corporations share price? 
+We plan to analyze county-level data made available by the US Drought Monitor, and water usage data provided by the United States Geological Survey. In our analysis we hope to learn whether communities suffering from drought are further impacting their situation with high water consumption rates. We also plan to look at Urban vs Rural communities to understand where consumption mitigation efforts can have the most impact.
 
-We plan to use the Twitter API to look at Elon Musk’s tweets for mentions of Tesla or Twitter. We will also pull aggregate trading data from the Quandl Finance API and match to twitter data to analyze the impact of Elon tweets & aggregate tweet volume on his companies’ stock price, trading volume, and any other financial data of interest.
+## Data Sources:
+1.	The United States Drought Monitor collects weekly data on drought conditions around the U.S.
+2.	Estimated Use of Water in the United States County-Level Data for 2015
+3.	GeoJSON State and County Fips.json 
 
-We plan to load the data into a relational database to perform our final analysis.
+## Data Limitations
+1.	The Water Use data is collected every 5 years.
+2.	Overall there was an abundance of data to work with and scaling down the columns was a priority.
+3.	Drought was not reported by all counties in some states.
 
-## Extract
+## Data Cleaning
+•	There were 141 columns in water Usage file and we filtered down to 38 columns.
+•	Renamed all the columns in Drought and Water Usage files.
+•	Dropped rows for the territories of the US like PR (Puerto Rico) & VI (Virgin Islands) from Water Usage file.
+•	Checked for duplicate, blank, NAN and null values.
 
-**Twitter API Calls*
-We made two separate calls to the Twitter v2 API. The first was to get Elon's account information that we then used to build our second call. The second call pulled as many of his historical tweets as possible. In order to get as many tweets as possible, we had to loop through each page of the request using the next_token parameter within the API. the response values were saved in lists.
+## Database & Flask Deployment
+DATABASE:
+Created a SQLite database with 3 tables and populated the tables with the 2 sources of data.
 
-**Quandl API Call**
+1.	Table 1 - Water - USGS Water Use Data
+2.	Table 2 – Drought - US Drought Monitor weekly drought data
+3.	Table 3 – Average Drought - Drought Data averaged for the year
 
-Called Quandl API using NASDAQ-Datalink. This outputted the call as a dataframe that provided the stock data we needed for this analysis.
+FLASK:
+Our Flask deployment has 3 static routes used to pass our tables as JSON to our Web App, which we then used for visualizations on our front end.
 
-## Transform
+## Analysis and Findings
+Our Flask deployment has 3 static routes used to pass our tables as JSON to our Web App:
+1.	USGS Water Use Data
+2.	US Drought Monitor weekly drought data
+3.	Drought Data averaged for the year
 
-**Lookup Table**
+## Web Development
+Basic Bootstrap layout with navbar links
+Visualizations:
+•	Water use by US county choropleth
+•	Drought percentage choropleth
+•	Weekly exceptional drought level time series
+•	Visual of the sum of all California water consumption categories using Observable Plot Javascript library (?)
+•	Irrigation
+•	Domestic use
+•	Aquaculture
 
-Built a lookup table to associate a numeric ID to our tickers.
 
-**Twitter Data**
-
-The data returned from our Twitter API call returned all of Elon's tweets. To answer the questions we were asking, we had to populate columns with boolean values for whether or not Elon mentioned either Twitter or Tesla on a given date. That included first parsing the tweets to see if they included Twitter or Tesla, which we saved to lists. Then once we had these values, we parsed the multi-date entries to a single date with boolean values associated with mentions of Twitter or Tesla. We then saved this to a dataframe.
-
-**Quandl Data**
-
-The data returned from our Quandl API call returned as two separate dataframes, one for each ticker (TSLA, TWTR). We needed this data as a single table for our database, which we accomplished using a union rather than a join. We then replaced ticker symbols with our numeric ids to match our database schema.
-
-## Load
-
-![Entity Relationship Diagram](https://raw.githubusercontent.com/T1me2/Project2-/main/database/ERD.png)
+![Entity Relationship Diagram]
 
 To load our data, we read in our .csv files (some steps mentioned above happened after this point). We used SQLAlchemy & Pandas to connect to our database and push our data using Python directly. Example Queries are included in the repo.
 
