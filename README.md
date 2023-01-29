@@ -6,7 +6,7 @@ Team Members:
          Rahma Ali, Kathleen Pflugi, Greg Roth, Art Rogers
 
 
-![alt text](![Capture](https://user-images.githubusercontent.com/113714205/215357843-6bd58f6a-6aab-4640-b02b-bd7c24158bf8.JPG))
+([image](https://user-images.githubusercontent.com/113714205/215357944-f26507f6-2b8e-47ed-b235-42031d6931f6.png)
 
 
 ---
