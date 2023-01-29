@@ -66,8 +66,3 @@ Visualizations:
 
 ## Analysis & Findings
 
-
-![Entity Relationship Diagram]
-
-To load our data, we read in our .csv files (some steps mentioned above happened after this point). We used SQLAlchemy & Pandas to connect to our database and push our data using Python directly. Example Queries are included in the repo.
-
