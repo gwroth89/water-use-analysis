@@ -41,7 +41,7 @@ def drought ():
     
     #Query
     query = db.select(
-        [drought]).where(drought.State=='CA')
+        [drought])
     result = engine.execute(query).fetchall()
     response = jsonify({'result': [dict(row) for row in result]})
     return response
