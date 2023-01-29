@@ -39,8 +39,13 @@ Created a SQLite database with 3 tables and populated the tables with the 2 sour
 2.	Table 2 – Drought - US Drought Monitor weekly drought data
 3.	Table 3 – Average Drought - Drought Data averaged for the year
 
+![Entity Relationship Diagram]
+
+To load our data, we read in our .csv files (some steps mentioned above happened after this point). We used SQLAlchemy & Pandas to connect to our database and push our data using Python directly. Example Queries are included in the repo.
+
 FLASK:
 Our Flask deployment has 3 static routes used to pass our tables as JSON to our Web App, which we then used for visualizations on our front end.
+
 
 ## Flask Static Routes
 Our Flask deployment has 3 static routes used to pass our tables as JSON to our Web App:
