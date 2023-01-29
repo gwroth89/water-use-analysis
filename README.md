@@ -42,7 +42,7 @@ Created a SQLite database with 3 tables and populated the tables with the 2 sour
 FLASK:
 Our Flask deployment has 3 static routes used to pass our tables as JSON to our Web App, which we then used for visualizations on our front end.
 
-## Analysis and Findings
+## Flask Static Routes
 Our Flask deployment has 3 static routes used to pass our tables as JSON to our Web App:
 1.	USGS Water Use Data
 2.	US Drought Monitor weekly drought data
@@ -58,6 +58,8 @@ Visualizations:
 •	Irrigation
 •	Domestic use
 •	Aquaculture
+
+## Analysis & Findings
 
 
 ![Entity Relationship Diagram]
