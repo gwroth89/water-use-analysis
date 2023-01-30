@@ -1,6 +1,6 @@
 let myMap = L.map("map", {
-  center: [36.7783, -119.4179],
-  zoom: 6
+  center: [39.8283, -98.5795],
+  zoom: 4
   });
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -18,15 +18,18 @@ let geojson2;
 
 d3.json(water).then(function(county) {
   d3.json(geoData).then(function(geo) {
-    geo.features = geo.features.filter(feature => feature.properties.STATE == 06);
+    geo.features = geo.features.filter(feature => feature.properties);
     
   
     geojson = L.choropleth(geo, {
       valueProperty: function(feature){
       val = county.result.filter(counti => counti.Fips == feature.id);
-
-      // console.log (val)
-      return val[0]["Total withdrawals total"]
+      if(val[0]) {
+        return val[0]["Total withdrawals total"]; 
+      } else { 
+            console.log(feature.id);
+            return 0
+          }
 
     },
     scale: ["#95e1e9", "#3d54c8"],
@@ -60,13 +63,13 @@ d3.json(water).then(function(county) {
           
       });
       
-      layer.bindPopup("<strong>" + feature.properties.NAME + "</strong><br /><br />Total water withdrawals in Mgal/d " + 
-        val[0]["Total withdrawals total"]);
+      layer.bindPopup("<strong>" + feature.properties.NAME + "</strong><br /><br />Total water withdrawals in Mgal/d: " + 
+      val.map(counti => counti["Total withdrawals total"]));
     }
   
     }).addTo(myMap)
 
-    let legend = L.control({ position: "topleft" });
+    let legend = L.control({ position: "bottomleft" });
     legend.onAdd = function() {
       let div = L.DomUtil.create("div", "info legend");
       let limits = geojson.options.limits;

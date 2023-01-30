@@ -1,7 +1,7 @@
 let myMap = L.map("map", {
-    center: [36.7783, -119.4179],
-    zoom: 6
-    });
+  center: [39.8283, -98.5795],
+  zoom: 4
+  });
   
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -18,16 +18,18 @@ let myMap = L.map("map", {
   
   d3.json(Counties).then(function(county) {
     d3.json(geoData).then(function(geo) {
-      geo.features = geo.features.filter(feature => feature.properties.STATE == 06);
-      
+      geo.features = geo.features.filter(feature => feature.properties)
     
+  
       geojson = L.choropleth(geo, {
         valueProperty: function(feature){
         val = county.result.filter(counti => counti.Fips == feature.id);
-  
-        // console.log (val)
-        return val[0]["Exceptional drought"]
-  
+          if(val[0]) {
+            return val[0]["Abnormally dry"]; 
+          } else { 
+                console.log(feature.id);
+                return 0
+              }
       },
       scale: ["#ffffb2", "#b10026"],
       steps: 10,
@@ -60,13 +62,13 @@ let myMap = L.map("map", {
             
         });
         
-        layer.bindPopup("<strong>" + feature.properties.NAME + "</strong><br /><br />Percentage of county in Exceptional drought " + 
-          Math.round(val[0]["Exceptional drought"]) + '%');
+        layer.bindPopup("<strong>" + feature.properties.NAME + "</strong><br /><br />Percentage of county in Moderate Drought " + 
+          Math.round(val.map(counti => counti["Abnormally dry"]) + '%'));
       }
     
       }).addTo(myMap)
 
-      let legend = L.control({ position: "topleft" });
+      let legend = L.control({ position: "bottomleft" });
     legend.onAdd = function() {
       let div = L.DomUtil.create("div", "info legend");
       let limits = geojson.options.limits;
