@@ -32,7 +32,7 @@ let myMap = L.map("map", {
           //looking through the data and pulling in the key "Total withdrawals total", if not found,
       //returning the unmatched FIPS in the console log
           if(val[0]) {
-            return val[0]["Abnormally dry"]; 
+            return val[0]["Moderate drought"]; 
           } else { 
                 console.log(feature.id);
                 return 0
@@ -73,7 +73,7 @@ let myMap = L.map("map", {
         });
         //setting markers with info from the data API
         layer.bindPopup("<strong>" + feature.properties.NAME + "</strong><br /><br />Percentage of county in Moderate Drought " + 
-          Math.round(val.map(counti => counti["Abnormally dry"]) + '%'));
+          Math.round(val.map(counti => counti["Moderate drought"]) + '%'));
       }
     
       }).addTo(myMap)
@@ -88,7 +88,7 @@ let myMap = L.map("map", {
       let labels = [];
   
       // Adding the minimum and maximum measurements to display on the legend
-      let legendInfo = "<h5>Percentage of County in Exceptional Drought</h5>" +
+      let legendInfo = "<h5>Percentage of County in Moderate Drought</h5>" +
         "<div class=\"labels\">" +
           "<div class=\"min\">" + limits[0] + "</div>" +
           "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
