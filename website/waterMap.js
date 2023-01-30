@@ -61,14 +61,16 @@ d3.json(water).then(function(county) {
               fillOpactity: .8
           });
 
-          // layer.bringToFront();
-          info.update(layer.feature.properties);
         },
         //resetting the polygon to not be highlighted after mouse has passed
         mouseout: function resetHighlight(event) {
           geojson.resetStyle(event.target);
           info.update();
           },
+
+          click: function(event) {
+            myMap.fitBounds(event.target.getBounds());
+          }
           
       });
       //setting markers with info from the data API

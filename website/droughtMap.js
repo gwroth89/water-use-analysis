@@ -58,23 +58,26 @@ let myMap = L.map("map", {
                 weight: 5,
                 color: 'black',
                 dashArray: '',
-                fillOpactity: .9
+                fillOpactity: .1
             });
   
-            // layer.bringToFront();
-            info.update(layer.feature.properties);
           },
           //resetting the polygon to not be highlighted after mouse has passed
           mouseout: function resetHighlight(event) {
             geojson.resetStyle(event.target);
             info.update();
             },
+
+            //creating a zoom for smaller counties
+          click: function(event) {
+              myMap.fitBounds(event.target.getBounds());
+            }
             
         });
         //setting markers with info from the data API
         layer.bindPopup("<strong>" + feature.properties.NAME + "</strong><br /><br />Percentage of county in Moderate Drought " + 
           Math.round(val.map(counti => counti["Moderate drought"]) + '%'));
-      }
+      },
     
       }).addTo(myMap)
     //creating the legend
