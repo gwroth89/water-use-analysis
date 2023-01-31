@@ -42,7 +42,7 @@ Created a SQLite database with 3 tables and populated the tables with the 2 sour
 2.	Table 2 – Drought - US Drought Monitor weekly drought data
 3.	Table 3 – Average Drought - Drought Data averaged for the year
 
-![Entity Relationship Diagram]
+![image](https://user-images.githubusercontent.com/110507463/215653219-1062bd2b-1bf7-457a-a01a-590c875566d8.png)
 
 To load our data, we read in our .csv files (some steps mentioned above happened after this point). We used SQLAlchemy & Pandas to connect to our database and push our data using Python directly. Example Queries are included in the repo.
 
