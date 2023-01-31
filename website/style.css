@@ -3,12 +3,6 @@ body {
   margin: 0;
 }
 
-/* #map,
-body,
-html {
-  height: 100%;
-} */
-
 .navbar-brand{
   color: white;
   background-color: rgb(138, 25, 25);
@@ -24,12 +18,16 @@ body,
 html {
 height: 100%;
 } 
+#map_2{
+  height: 100%;
+}
 
 
 .leaflet-popup-content {
   text-align: center;
 }
 
+/*legend info */
 /* CSS from the leaflet-choropleth documentation */
 .legend {
   color: #555;

@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>2015 Drought Time Series</title>
+  <title>2015 Water Usage by Category</title>
+
 
 
   <!-- Boostrap Stylesheet -->
@@ -35,24 +36,35 @@
           <a class="nav-link dropdown-toggle" id="navbar-dropdown" 
                 role="button" data-bs-toggle="dropdown">Visualizations</a>
               <ul class="dropdown-menu" aria-labelledby="navbar-dropdown">
-                <li><a href="map.html" class="dropdown-item">Drought Choropleth</a></li>
-                <li><a href="time.html" class="dropdown-item">Drought Over Time</a></li>
-                <li><a href="scatter.html" class="dropdown-item">Drought v. Water Use Scatterplot</a></li>
+                <li><a href="waterMap.html" class="dropdown-item">Water Use Choropleth</a></li>
+                <li><a href="droughtMap.html" class="dropdown-item">Drought Level Choropleth</a></li>
+                <li><a href="time.html" class="dropdown-item">Water Use Bar Graph</a></li>
               </ul>
-        </li>
-        <li class="nav-item">
+              </li>
+            <li class="nav-item">
           <a href="data.html" class="nav-link">Data</a>
         </li>
       </ul>
     </div> 
 </nav>
   <!-- End of navbar -->
+  <!--start of container-->
 
-  <div class="row">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="row"></div>
+        <div class="col-md-12">
+          <div id="time_series"></div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row">
     <div class="col-md-12">
       <div id="time_series"></div>
     </div>
-  </div>
+  </div> -->
 
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
