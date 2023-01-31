@@ -56,11 +56,7 @@ Basic Bootstrap layout with navbar links
 Visualizations:
 •	Water use by US county choropleth
 •	Drought percentage choropleth
-•	Weekly exceptional drought level time series
-•	Visual of the sum of all California water consumption categories using Observable Plot Javascript library (?)
-•	Irrigation
-•	Domestic use
-•	Aquaculture
+•	Total water usage stacked bar chart by state
 
 ![image](https://user-images.githubusercontent.com/110507463/215653318-737d817e-d3a4-41e7-b8a7-b6857492d275.png)
 ![image](https://user-images.githubusercontent.com/110507463/215653332-0a897bf4-25f4-44e2-9a9f-907b3417b8c5.png)
@@ -81,4 +77,4 @@ Further Analysis Opportunities:
 
 - Water usage per capita 
 
- -Drought level percentages over time
+- Drought level percentages over time
