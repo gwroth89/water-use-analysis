@@ -27,7 +27,9 @@ We plan to analyze county-level data made available by the US Drought Monitor, a
 3.	Drought was not reported by all counties in some states.
 
 ## Data Cleaning
-•	There were 141 columns in water Usage file and we filtered down to 38 columns.
+•	There were 141 columns in water Usage file and we filtered down to 38 columns.Drought had 13 columns filter down to  11 columns.​
+
+​
 •	Renamed all the columns in Drought and Water Usage files.
 •	Dropped rows for the territories of the US like PR (Puerto Rico) & VI (Virgin Islands) from Water Usage file.
 •	Checked for duplicate, blank, NAN and null values.
