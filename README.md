@@ -27,9 +27,7 @@ We plan to analyze county-level data made available by the US Drought Monitor, a
 3.	Drought was not reported by all counties in some states.
 
 ## Data Cleaning
-•	There were 141 columns in water Usage file and we filtered down to 38 columns.Drought had 13 columns filter down to  11 columns.​
-
-​
+•	There were 141 columns in water Usage file and we filtered down to 38 columns.Drought had 13 columns filter down to  11 columns.
 •	Renamed all the columns in Drought and Water Usage files.
 •	Dropped rows for the territories of the US like PR (Puerto Rico) & VI (Virgin Islands) from Water Usage file.
 •	Checked for duplicate, blank, NAN and null values.
@@ -64,5 +62,23 @@ Visualizations:
 •	Domestic use
 •	Aquaculture
 
+![image](https://user-images.githubusercontent.com/110507463/215653318-737d817e-d3a4-41e7-b8a7-b6857492d275.png)
+![image](https://user-images.githubusercontent.com/110507463/215653332-0a897bf4-25f4-44e2-9a9f-907b3417b8c5.png)
+
+
 ## Analysis & Findings
 
+Analysis:
+
+Western states in general, use more water than other states. These states are typically also more subject to Drought conditions.
+Unlike most non-normalized data-sets, water usage does not highly correlate with population centers. Industrial and agricultural use drive substantial water consumption in rural counties and states.
+Idaho for instance is the 38th largest state by population, however consumes the 3rd most water of all states.
+
+
+Further Analysis Opportunities:
+
+ - Breakdown of water usage categories by county per state
+
+- Water usage per capita 
+
+ -Drought level percentages over time
